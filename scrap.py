@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from requests import get
 from random import randrange
-
+import random
 #Generating request for the specific url ###
 url = "https://quizlet.com/58647605/kaplan-900-flash-cards/"
 
@@ -14,14 +14,10 @@ soup = BeautifulSoup(htmldoc,'html.parser')
 wordtags = soup.find_all('span',{'class':'TermText qWord lang-en'})
 meaningtags = soup.find_all('span',{'class':'TermText qDef lang-en'})
 
-words = []
-meanings = []
+d={}
 
-for tag in wordtags:
-    words.append(tag.get_text())
+for tag,mean in zip(wordtags,meaningtags):
+	d[tag.get_text()]=mean.get_text()
 
-for tag in meaningtags:
-    meanings.append(tag.get_text())
-
-index = randrange(0,len(words))
-print "The word choosen is " + words[index] + " : " + meanings[index]
+random_list=list(random.choice(d.items()))
+print ': '.join(random_list)
