@@ -1,9 +1,12 @@
+#!/usr/bin/env python
 from bs4 import BeautifulSoup
 from requests import get
 from random import randrange
 import random
+import subprocess
 #Generating request for the specific url ###
-url = "https://quizlet.com/58647605/kaplan-900-flash-cards/"
+
+url = "https://quizlet.com/18329124/manhattan-gre-advanced-and-essential-combo-word-list-flash-cards/"
 
 htmldoc = get(url).text
 #Extract the document from the request###
@@ -20,4 +23,6 @@ for tag,mean in zip(wordtags,meaningtags):
 	d[tag.get_text()]=mean.get_text()
 
 random_list=list(random.choice(d.items()))
-print ': '.join(random_list)
+
+notifystr = ': '.join(random_list)
+subprocess.Popen(['notify-send',notifystr])
