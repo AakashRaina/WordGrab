@@ -11,4 +11,4 @@ mv greword.py /usr/bin/
 mv /usr/bin/greword.py /usr/bin/greword
 ```
 ##Usage
-After the installation is done,everytime you run `scrap` on your terminal a word will pop on your notification panel.
+After the installation is done,everytime you run `greword` on your terminal a word will pop on your notification panel.The word will also be read out to you for learning the pronounciation

@@ -4,10 +4,10 @@ from requests import get
 from random import randrange
 import random
 import subprocess
-
+import pyttsx
 
 def get_word():
-    
+
     url = "https://quizlet.com/18329124/manhattan-gre-advanced-and-essential-combo-word-list-flash-cards/"
 
     htmldoc = get(url).text
@@ -27,6 +27,21 @@ def get_word():
 
     notifystr = ': '.join(random_list)
     subprocess.Popen(['notify-send',notifystr])
+    return notifystr
+
+def t_speech():
+
+    wordstr = get_word()
+
+    engine = pyttsx.init()
+    engine.setProperty('rate',90)
+    engine.say(wordstr)
+    engine.runAndWait()
+
+
+    # engine.say(wordstr)
+
 
 if __name__ == '__main__':
-    get_word()
+    # get_word()
+    t_speech()
